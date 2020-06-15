@@ -1,0 +1,67 @@
+{# auth/register.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 offset-md-4 form-wrapper auth">
+                <h3 class="text-center form-title">Register</h3>
+                <form action="/{{ base }}WebRoot/register" method="post" id="contactForm">
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" name="username" class="form-control form-control-lg" required
+                               data-validation-required-message="Please enter your name." value="{% if(user.username is defined) %}{{user.username }}{% endif %}">
+                        <p class="help-block text-danger">
+
+                            {% if(errors.username is defined) %}
+                                {{ errors.username }}
+                            {% endif %}
+                        </p>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="text" name="email" class="form-control form-control-lg" id="email"
+                               required data-validation-required-message="Please enter your email address." value="{% if(user.email is defined) %}{{user.email }}{% endif %}">
+                        <p class="help-block text-danger">
+                            {% if(errors.email is defined) %}
+                                {{ errors.email }}
+                            {% endif %}
+                        </p>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" name="password" class="form-control form-control-lg" id="password"
+                               required data-validation-required-message="Please enter your password.">
+                        <p class="help-block text-danger">
+                            {% if(errors.passwordConf is defined) %}
+                                {{ errors.passwordConf }}
+                            {% endif %}
+                        </p>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Password Confirm</label>
+                        <input type="password" name="passwordConf" class="form-control form-control-lg"
+                               id="password_confirm"
+                               required data-validation-required-message="Password does not match.">
+                        <p class="help-block text-danger">
+                            {% if(errors.passwordConf is defined) %}
+                                {{ errors.passwordConf }}
+                            {% endif %}
+                        </p>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" name="signup-btn" class="btn btn-lg btn-block">Sign Up</button>
+                    </div>
+                </form>
+
+                <p>Already have an account? <a href="/{{ base }}WebRoot/login">Login</a></p>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

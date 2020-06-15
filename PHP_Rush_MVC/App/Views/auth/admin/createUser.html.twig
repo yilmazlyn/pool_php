@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="Content-Language" content="en"/>
+    <meta name="msapplication-TileColor" content="#2d89ef">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <link rel="icon" href="/admin/assets/images/favicon.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+          integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
+
+    <!-- Generated: 2018-04-16 09:29:05 +0200 -->
+    <title>Admin</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
+
+    <!-- Dashboard Core -->
+    <link href="../../public/admin/assets/css/dashboard.css" rel="stylesheet"/>
+    <!-- c3.js Charts Plugin -->
+    <link href="../../public/admin/assets/plugins/charts-c3/plugin.css" rel="stylesheet"/>
+    <!-- Google Maps Plugin -->
+    <link href="../../public/admin/assets/plugins/maps-google/plugin.css" rel="stylesheet"/>
+
+    <!-- Input Mask Plugin -->
+
+</head>
+<body>
+
+<div class="page">
+    <div class="page-main">
+        <div class="header py-4">
+            <div class="container">
+                <div class="d-flex">
+                    <a class="header-brand" href="/admin/dashboard">
+                        <img src="../../public/admin/assets/images/favicon.ico" class="header-brand-img"> Admin
+                    </a>
+                    <div class="d-flex order-lg-2 ml-auto">
+                        <div>
+                            <form action="/PHP_Rush_MVC/WebRoot/logout" method="POST">
+                                <button name="logout" class="btn btn-danger" id="logout">Logout</button>
+                            </form>
+                        </div>
+                    </div>
+                    <a href="#" class="header-toggler d-lg-none ml-3 ml-lg-0" data-toggle="collapse"
+                       data-target="#headerMenuCollapse">
+                        <span class="header-toggler-icon"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="header collapse d-lg-flex p-0" id="headerMenuCollapse">
+            <div class="container">
+                <div class="row align-items-center">
+
+                    <div class="col-lg-3 ml-auto">
+                        <form class="input-icon my-3 my-lg-0">
+                            <input type="search" class="form-control header-search" placeholder="Search&hellip;"
+                                   tabindex="1">
+                            <div class="input-icon-addon">
+                                <i class="fe fe-search"></i>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="col-lg order-lg-first">
+                        <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
+                            <li class="nav-item">
+                                <a href="/admin/dashboard"
+                                   class="nav-link @if(Request::route()->getName() == 'dashboard') active @endif">Dashboard</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="/admin/users">Users</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="/admin/users">Products</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="my-3 my-md-5">
+            <div class="container">
+
+                <div class="page-header">
+                    <h1 class="page-title">Create new user</h1>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-lg-6">
+                        <form class="card p-3 form-group" method="POST" action="">
+
+                            <div class="form-group">
+                                <label class="form-label">Username</label>
+                                <input type="text" class="form-control" name="username"
+                                       >
+                                <p class="help-block text-danger">
+
+                                    {% if(creationErrors.username is defined) %}
+                                        {{ creationErrors.username }}
+                                    {% endif %}
+                                </p>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Email</label>
+                                <input type="text" class="form-control" name="email"
+                                      >
+                                <p class="help-block text-danger">
+
+                                    {% if(creationErrors.email is defined) %}
+                                        {{ creationErrors.username }}
+                                    {% endif %}
+                                </p>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Password</label>
+                                <input type="password" class="form-control" name="password"
+                                      >
+                                <p class="help-block text-danger">
+
+                                    {% if(creationErrors.passwordConf is defined) %}
+                                        {{ creationErrors.passwordConf }}
+                                    {% endif %}
+                                </p>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Confirm Password</label>
+                                <input type="password" class="form-control" name="passwordConf"
+                                      >
+                                <p class="help-block text-danger">
+
+                                    {% if(creationErrors.passwordConf is defined) %}
+                                        {{ creationErrors.passwordConf }}
+                                    {% endif %}
+                                </p>
+                            </div>
+
+
+                            <label class="form-label">Roles</label>
+                            <div class="selectgroup selectgroup-pills mb-4">
+
+                                <label class="selectgroup-item">
+                                    <input type="radio" name="role" value="admin"
+                                           class="selectgroup-input"  >
+                                    <span class="selectgroup-button">Admin</span>
+                                </label>
+
+                                <label class="selectgroup-item">
+                                    <input type="radio" name="role" value="writer"
+                                           class="selectgroup-input"  >
+                                    <span class="selectgroup-button">Writer</span>
+                                </label>
+
+                                <label class="selectgroup-item">
+                                    <input type="radio" name="role" value="user"
+                                           class="selectgroup-input"  >
+                                    <span class="selectgroup-button">User</span>
+                                </label>
+
+                            </div>
+
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-primary form-control" value="Save">
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script src="../../public/admin/assets/js/require.min.js"></script>
+
+{#<script>
+    requirejs.config({
+        baseUrl: '.'
+    });
+</script>#}
+
+<script src="../../public/admin/assets/js/dashboard.js"></script>
+<script src="../../public/admin/assets/plugins/charts-c3/plugin.js"></script>
+<script src="../../public/admin/assets/plugins/maps-google/plugin.js"></script>
+<script src="../../public/admin/assets/plugins/input-mask/plugin.js"></script>
+
+
+{#@stack('_js')#}
+</body>
+</html>
